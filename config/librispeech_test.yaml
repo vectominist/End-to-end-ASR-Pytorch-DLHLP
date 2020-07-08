@@ -1,0 +1,22 @@
+data:
+  corpus:                                 # Pass to dataloader
+    # The following depends on corpus
+    path: '/data/storage/harry/'
+    name: 'LibriSpeech'
+    dev_split: ['LibriSpeech', 'dev-clean', 'dev']
+    test_split: ['LibriSpeech', 'test-clean', 'test']
+    bucketing: False
+    batch_size: 1
+src:
+  config: '/data/storage/harry/LLLASR/config/baseline_0506.yaml'
+  ckpt: '/data/storage/harry/E2E_ASR/ckpt/BL_LS100_TUNE1_0/best_ctc_LibriSpeech.pth'
+
+decode:
+  # ctc_weight: 0
+  beam_size: 1
+  # vocab_candidate: 12
+  min_len_ratio: 0.01
+  max_len_ratio: 0.25
+  # lm_path: ''
+  # lm_config: ''
+  # lm_weight: 0

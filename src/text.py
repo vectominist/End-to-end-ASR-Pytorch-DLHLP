@@ -5,8 +5,7 @@ Reference: https://www.tensorflow.org/datasets/api_docs/python/tfds/features/tex
 import abc
 
 BERT_FIRST_IDX = 997  # Replacing the 2 tokens right before english starts as <eos> & <unk>
-BERT_LAST_IDX = 29635  # Drop rest of tokens
-
+BERT_LAST_IDX = 29635 # Drop rest of tokens
 
 class _BaseTextEncoder(abc.ABC):
     @abc.abstractmethod
@@ -61,13 +60,12 @@ class CharacterTextEncoder(_BaseTextEncoder):
     def decode(self, idxs, ignore_repeat=False):
         vocabs = []
         for t, idx in enumerate(idxs):
-            v = self.idx_to_vocab(idx)
-            if idx == self.pad_idx or (ignore_repeat and t > 0 and idx == idxs[t-1]):
-                continue
-            elif idx == self.eos_idx:
+            if idx == self.eos_idx:
                 break
-            else:
-                vocabs.append(v)
+            elif idx == self.pad_idx or (ignore_repeat and t > 0 and idx == idxs[t - 1 if t > 0 else 0]):
+                continue
+            v = self.idx_to_vocab(idx)
+            vocabs.append(v)
         return "".join(vocabs)
 
     @classmethod
@@ -176,7 +174,7 @@ class BertTextEncoder(_BaseTextEncoder):
         for idx in self._tokenizer.encode(s):
             try:
                 r_idx = idx-BERT_FIRST_IDX
-                assert r_idx > 0
+                assert r_idx>0
                 reduced_idx.append(r_idx)
             except:
                 reduced_idx.append(self.unk_idx)
@@ -191,8 +189,7 @@ class BertTextEncoder(_BaseTextEncoder):
             elif idx == self.pad_idx or (ignore_repeat and t > 0 and idx == idxs[t-1]):
                 continue
             else:
-                # Shift to correct idx for bert tokenizer
-                crop_idx.append(idx+BERT_FIRST_IDX)
+                crop_idx.append(idx+BERT_FIRST_IDX) # Shift to correct idx for bert tokenizer
         return self._tokenizer.decode(crop_idx)
 
     @property
@@ -226,7 +223,7 @@ def load_text_encoder(mode, vocab_file):
         return CharacterTextEncoder.load_from_file(vocab_file)
     elif mode == "subword":
         return SubwordTextEncoder.load_from_file(vocab_file)
-    elif mode == "word":
+    elif mode == "word" or mode == "phone":
         return WordTextEncoder.load_from_file(vocab_file)
     elif mode.startswith("bert-"):
         return BertTextEncoder.load_from_file(mode)
