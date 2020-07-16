@@ -8,11 +8,11 @@ data:
     bucketing: False
     batch_size: 1
 src:
-  config: '/data/storage/harry/LLLASR/config/baseline_0506.yaml'
-  ckpt: '/data/storage/harry/E2E_ASR/ckpt/BL_LS100_TUNE1_0/best_ctc_LibriSpeech.pth'
+  config: '/data/storage/harry/LLLASR/config/librispeech_asr.yaml'
+  ckpt: '/data/storage/harry/E2E_ASR/ckpt/LS100_TEST_0/best_att_LibriSpeech.pth'
 
 decode:
-  # ctc_weight: 0
+  ctc_weight: 0
   beam_size: 1
   # vocab_candidate: 12
   min_len_ratio: 0.01

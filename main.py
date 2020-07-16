@@ -42,13 +42,12 @@ np.random.seed(paras.seed)
 torch.manual_seed(paras.seed)
 if torch.cuda.is_available():
     torch.cuda.manual_seed_all(paras.seed)
-    print('There are ', torch.cuda.device_count(), ' device(s) available')
-    print('Using device cuda:', str(paras.cuda))
+    # print('There are ', torch.cuda.device_count(), ' device(s) available')
+    # print('Using device cuda:', str(paras.cuda))
 
 # Hack to preserve GPU ram just incase OOM later on server
 if paras.gpu and paras.reserve_gpu>0:
     buff = torch.randn(int(paras.reserve_gpu*1e9//4)).to(torch.device('cuda:' + str(paras.cuda)))
-    # buff = torch.randn((2,2)).to(torch.device('cuda:' + str(paras.cuda)))
     del buff
 
 if paras.lm:

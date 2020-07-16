@@ -174,13 +174,12 @@ class BaseSolver():
             score  - <float> The value of metric used to evaluate model
         '''
         ckpt_path = os.path.join(self.ckpdir, f_name)
-        if model_type == 'asr':
-            full_dict = {
-                "model": self.model.state_dict(),
-                "optimizer": self.optimizer.get_opt_state_dict(),
-                "global_step": self.step,
-                metric: score
-            }
+        full_dict = {
+            "model": self.model.state_dict(),
+            "optimizer": self.optimizer.get_opt_state_dict(),
+            "global_step": self.step,
+            metric: score
+        }
         # Additional modules to save
         #if self.amp:
         #    full_dict['amp'] = self.amp_lib.state_dict()

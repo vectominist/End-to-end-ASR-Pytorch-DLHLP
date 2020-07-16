@@ -3,7 +3,7 @@ data:
     # The following depends on corpus
     path: '/data/storage/harry'
     name: 'LibriSpeech'
-    train_split: ['LibriSpeech', 'train-clean-360', 'train']
+    train_split: ['LibriSpeech', 'train-clean-100', 'train']
     dev_split: [['LibriSpeech', 'dev-clean', 'dev']]
     bucketing: True
     batch_size: 16
@@ -26,7 +26,7 @@ data:
 
 hparas:                                   # Experiment hyper-parameters
   valid_step: 5000
-  max_step: 500000
+  max_step: 200000
   tf_start: 1.0
   tf_end: 1.0
   tf_step: 150000
@@ -37,19 +37,30 @@ hparas:                                   # Experiment hyper-parameters
   curriculum: 0
   val_mode: 'wer'
 
-model:                                     # Model architecture
-  ctc_weight: 0.5                           # Weight for CTC loss
+model:                                    # Model architecture
+  ctc_weight: 0.5                         # Weight for CTC loss
   encoder:
-    vgg: 0                                 # 4x reduction on time feature extraction
+    vgg: 0                                # 4x reduction on time feature extraction
     vgg_freq: -1
     vgg_low_filt: -1
-    module: 'LSTM'                         # 'LSTM'/'GRU'/'Transformer'
+    module: 'LSTM'                        # 'LSTM'/'GRU'/'Transformer'
     bidirection: True
     dim: [320,320,320,320]
-    dropout: [0,0,0,0]
+    dropout: [0.2,0.2,0.2,0.2]
     layer_norm: [False,False,False,False]
-    proj: [True,True,True,True]            # Linear projection + Tanh after each rnn layer
+    proj: [True,True,True,True]           # Linear projection + Tanh after each rnn layer
     sample_rate: [1,2,1,1]
-    sample_style: 'drop'                   # 'drop'/'concat'
-  attention: False
-  decoder: False
+    sample_style: 'drop'                  # 'drop'/'concat'
+  attention:
+    mode: 'loc'                           # 'dot'/'loc'
+    dim: 300
+    num_head: 1
+    v_proj: False                         # if False and num_head>1, encoder state will be duplicated for each head
+    temperature: 0.5                      # scaling factor for attention
+    loc_kernel_size: 100                  # just for mode=='loc'
+    loc_kernel_num: 10                    # just for mode=='loc'
+  decoder:
+    module: 'LSTM'                        # 'LSTM'/'GRU'/'Transformer'
+    dim: 300
+    layer: 1
+    dropout: 0

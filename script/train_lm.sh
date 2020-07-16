@@ -1,17 +1,15 @@
 #!/bin/bash
-# run lm training process
 
-EXP_TYPE="LM"
 CONFIG="librispeech_lm"
-DIR="/data/storage/harry/"
+DIR="/data/storage/harry/E2E_ASR"
 
-echo "Start running training process of LM"
+echo "Start running training process of RNNLM"
 CUDA_VISIBLE_DEVICES=$2 python3 main.py --config config/${CONFIG}.yaml \
     --name $1 \
     --njobs 8 \
     --seed 0 \
     --lm \
-    --logdir ${DIR}${EXP_TYPE}/log/ \
-    --ckpdir ${DIR}${EXP_TYPE}/ckpt/ \
-    --outdir ${DIR}${EXP_TYPE}/result/ \
+    --logdir ${DIR}/log/ \
+    --ckpdir ${DIR}/ckpt/ \
+    --outdir ${DIR}/result/ \
     --reserve_gpu 0 \

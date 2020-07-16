@@ -125,7 +125,7 @@ class Solver(BaseSolver):
         for s, ds in zip(['dev','test'],[self.dv_set,self.tt_set]):
             # Setup output
             self.cur_output_path = self.output_file.format(s,'output')
-            with open(self.cur_output_path,'w') as f:
+            with open(self.cur_output_path,'w',encoding='UTF-8') as f:
                 f.write('idx\thyp\ttruth\n')
 
             if self.greedy:
@@ -135,7 +135,7 @@ class Solver(BaseSolver):
                 self.verbose('Results will be stored at {}'.format(self.cur_output_path))
                 self.write_hyp(results, self.cur_output_path, 'jizz')
             # elif self.ctc_only:
-            #     # CTC decode
+            #     # TODO: CTC decode
             #     self.verbose('Performing instance-wise CTC beam decoding on {} set, num of batch = {}.'.format(s,len(ds)))
             #     # Minimal function to pickle
             #     ctc_beam_decode_func = partial(ctc_beam_decode, model=copy.deepcopy(self.decoder), device=self.device)
@@ -147,7 +147,7 @@ class Solver(BaseSolver):
             else:
                 # Additional output to store all beams
                 self.cur_beam_path = self.output_file.format(s,'beam')
-                with open(self.cur_beam_path,'w') as f:
+                with open(self.cur_beam_path,'w',encoding='UTF-8') as f:
                     f.write('idx\tbeam\thyp\ttruth\n')
                 self.verbose('Performing instance-wise beam decoding on {} set. (NOTE: use --njobs to speedup)'.format(s))
                 # Minimal function to pickle
@@ -168,7 +168,7 @@ class Solver(BaseSolver):
         for name, hyp_seqs, truth in tqdm(results):
             hyp_seqs = [self.tokenizer.decode(hyp, ignore_repeat=ignore_repeat) for hyp in hyp_seqs]
             truth = self.tokenizer.decode(truth)
-            with open(best_path,'a') as f:
+            with open(best_path,'a',encoding='UTF-8') as f:
                 if type(hyp_seqs[0]) is not str:
                     hyp_seqs[0] = ' '
                 if len(hyp_seqs[0]) == 0:
@@ -177,7 +177,7 @@ class Solver(BaseSolver):
                     truth = ' '
                 f.write('\t'.join([name,hyp_seqs[0],truth])+'\n')
             if not self.greedy:
-                with open(beam_path,'a') as f:
+                with open(beam_path,'a',encoding='UTF-8') as f:
                     for b,hyp in enumerate(hyp_seqs):
                         f.write('\t'.join([name,str(b),hyp,truth])+'\n')
 

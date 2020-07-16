@@ -3,7 +3,8 @@ data:
     # The following depends on corpus
     name: 'Librispeech'                   # Specify corpus
     path: '/data/storage/harry/LibriSpeech'
-    train_split: ['librispeech-lm-norm.txt'] # Official LM src from LibriSpeech
+    # train_split: ['librispeech-lm-norm.txt'] # Official LM src from LibriSpeech
+    train_split: ['train-clean-100']
     dev_split: ['dev-clean']
     bucketing: True
     batch_size: 128
@@ -12,7 +13,7 @@ data:
     vocab_file: 'corpus/librispeech_char.txt'
 
 hparas:                                   # Experiment hyper-parameters
-  valid_step: 10000
+  valid_step: 5000
   max_step: 100000000
   optimizer: 'Adam'
   lr: 0.0001
@@ -21,8 +22,8 @@ hparas:                                   # Experiment hyper-parameters
 
 model:                                     # Model architecture
   emb_tying: False                         # https://arxiv.org/pdf/1608.05859.pdf
-  emb_dim: 512
+  emb_dim: 256
   module: 'LSTM'                           # 'LSTM'/'GRU'
-  dim: 512
+  dim: 256
   n_layers: 2
   dropout: 0.5

@@ -59,7 +59,6 @@ class Solver(BaseSolver):
                 self.best_wer['att'][name] = 3.0
                 self.best_wer['ctc'][name] = 3.0
 
-
     def set_model(self):
         ''' Setup ASR model and optimizer '''
         # Model
