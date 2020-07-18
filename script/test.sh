@@ -3,7 +3,6 @@
 
 # $1 : Experiment name
 # $2 : Cuda id
-# $3 : Config name
 
 CONFIG="librispeech_test"
 DIR="/data/storage/harry/E2E_ASR"

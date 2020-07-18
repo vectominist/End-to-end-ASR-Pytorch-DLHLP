@@ -1,21 +1,40 @@
 # End-to-end Automatic Speech Recognition Systems - PyTorch Implementation
-
-## Introduction
-
-### New features
-1. Added fine-tuning model method (transfer learning)
+For complete introdution and usage, please see the original repository [Alexander-H-Liu/End-to-end-ASR-Pytorch](https://github.com/Alexander-H-Liu/End-to-end-ASR-Pytorch).
+## New features
+1. Added layer-wise transfer learning
 2. Supports multiple development sets
-3. Fixed come bugs
+3. Fixed some bugs
 
-### Instructions
-1. Training  
+## Instructions
+### Training
+Modify `script/train.sh`, `script/train_lm.sh`, `config/librispeech_asr.yaml`, and `config/librispeech_lm.yaml` first. GPU is required.
 ```
-bash script/train.sh <model name> <cuda id>
+bash script/train.sh <asr name> <cuda id>
+bash script/train_lm.sh <lm name> <cuda id>
 ```
-2. Testing  
+### Testing
+Modify `script/test.sh` and `config/librispeech_test.sh` first. Increase the number of `--njobs` can speed up decoding process, but might cause OOM.
+```
+bash script/test.sh <asr name> <cuda id>
 ```
 
-```
+## Baseline model
+Both joint CTC-attention ASR model and RNNLM are trained on the LibriSpeech `train-clean-100` set. The perplexity of the LM on `dev-clean` set is 3.66. 
+
+| Decoding | DEV WER(%) | TEST WER(%) |
+| -------- | ---------- | ----------- |
+| Greedy   |            |             |
+| Beam=2   |            |             |
+| Beam=4   |            |             |
+| Beam=8   |            |             |
+
+## TODO
+1. CTC beam decoding (testing)
+2. SpecAugment (will be released)
+3. Multiple corpora training (will be released)
+4. Evaluation of the results of beam decoding (will be released)
+5. Combination of CTC and RNNLM: RNN transducer (under construction)
+6. Combining voice conversion model with ASR (under construction)
 
 ## Citation
 
