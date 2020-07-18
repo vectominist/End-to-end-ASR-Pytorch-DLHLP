@@ -154,8 +154,8 @@ Options for decoding that *will* dramatically change the decoding result.
 | Parameter | Description  | Note |
 |-----------|--------------|------|
 | beam_size | `int` beam size for beam search algorithm, be careful that larger beam increases memory usage||
-| min_len_ratio | `float` the minimum length of any hypothesis will be `min_len_ratio` $\times$ `input length` |
-| max_len_ratio | `float` the maximum decoding time step will be `max_len_ratio` $\times$ `input length`, hypothesis will end if `<eos>` is predicted or maximum decoding step reached |
+| min_len_ratio | `float` the minimum length of any hypothesis will be `min_len_ratio` x `input length` |
+| max_len_ratio | `float` the maximum decoding time step will be `max_len_ratio` x `input length`, hypothesis will end if `<eos>` is predicted or maximum decoding step reached |
 | lm_path   | `str` the path to pre-trained LM for joint decoding, **this is not language model rescoring**| [paper](https://arxiv.org/pdf/1706.02737.pdf)|
 | lm_config | `str` the path to the config of pre-trained LM for joint decoding| [paper](https://arxiv.org/pdf/1706.02737.pdf) |
 | lm_weight | `float` the weight for RNNLM in joint decoding| [paper](https://arxiv.org/pdf/1706.02737.pdf), slower inference |

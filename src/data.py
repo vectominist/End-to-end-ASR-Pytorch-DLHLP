@@ -17,6 +17,8 @@ def create_dataset(tokenizer, ascending, name, path, bucketing, batch_size,
     # Recognize corpus
     if name.lower() == 'librispeech':
         from corpus.preprocess_librispeech import LibriDataset as Dataset
+    elif name.lower() == 'dlhlp':
+        from corpus.preprocess_dlhlp import DLHLPDataset as Dataset
     else:
         raise NotImplementedError
 
@@ -81,6 +83,8 @@ def create_textset(tokenizer, train_split, dev_split, name, path, bucketing, bat
     # Recognize corpus
     if name.lower() == "librispeech":
         from corpus.preprocess_librispeech import LibriTextDataset as Dataset
+    elif name.lower() == 'dlhlp':
+        from corpus.preprocess_dlhlp import DLHLPTextDataset as Dataset
     else:
         raise NotImplementedError
 

@@ -3,7 +3,8 @@ For complete introdution and usage, please see the original repository [Alexande
 ## New features
 1. Added layer-wise transfer learning
 2. Supports multiple development sets
-3. Fixed some bugs
+3. Supports FreqCNN (frequency-divided CNN extractor) for whispered speech recognition.
+4. Supports DLHLP corpus for the course [Deep Learning for Human Language Processing](http://speech.ee.ntu.edu.tw/~tlkagk/courses_DLHLP20.html)
 
 ## Instructions
 ### Training
@@ -18,23 +19,27 @@ Modify `script/test.sh` and `config/librispeech_test.sh` first. Increase the num
 bash script/test.sh <asr name> <cuda id>
 ```
 
-## Baseline model
-Both joint CTC-attention ASR model and RNNLM are trained on the LibriSpeech `train-clean-100` set. The perplexity of the LM on `dev-clean` set is 3.66. 
+## LibriSpeech 100hr Baseline
+This baseline is composed of a character-based joint CTC-attention ASR model and an RNNLM which were trained on the LibriSpeech `train-clean-100`. The perplexity of the LM on the `dev-clean` set is 3.66. 
 
 | Decoding | DEV WER(%) | TEST WER(%) |
 | -------- | ---------- | ----------- |
-| Greedy   |            |             |
-| Beam=2   |            |             |
-| Beam=4   |            |             |
-| Beam=8   |            |             |
+| Greedy   | 25.4       | 25.9        |
+
+## DLHLP Baseline
+This baseline is composed of a character-based joint CTC-attention ASR model and an RNNLM which were trained on the DLHLP training set.
+
+| Decoding               | DEV WER(%) | TEST LevDistance |
+| ---------------------- | ---------- | ---------------- |
+| Greedy                 | 5.86       | 0.896            |
+| SpecAugment + Beam=5   | 2.88       | 0.508            |
 
 ## TODO
 1. CTC beam decoding (testing)
 2. SpecAugment (will be released)
 3. Multiple corpora training (will be released)
-4. Evaluation of the results of beam decoding (will be released)
+4. Support of WSJ and Switchboard dataset (under construction)
 5. Combination of CTC and RNNLM: RNN transducer (under construction)
-6. Combining voice conversion model with ASR (under construction)
 
 ## Citation
 

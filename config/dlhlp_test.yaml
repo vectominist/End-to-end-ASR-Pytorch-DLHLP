@@ -1,0 +1,24 @@
+data:
+  corpus:                                 # Pass to dataloader
+    # The following depends on corpus
+    name: 'DLHLP'                         # Specify corpus
+    path: '/data/storage/harry' #'pth/to/librispeech'
+    # path: '/workspace/data/wTIMIT'         #'pth/to/librispeech'
+    dev_split: ['dev']
+    test_split: ['test']
+    bucketing: False
+    batch_size: 1
+    ratio: -1                             # Does nothing here
+    threshold: 100.0                      # Threshold of length of audio(sec)
+src:
+  config: '/data/storage/harry/End-to-end-ASR-Pytorch/config/dlhlp_asr.yaml'
+  ckpt: '/data/storage/harry/E2E_ASR/ckpt/DLHLP_0/best_att_DLHLP.pth'
+
+decode:
+  beam_size: 10
+  min_len_ratio: 0.01
+  max_len_ratio: 0.30
+  lm_path: '/data/storage/harry/dlhlp2020/hw1/ckpt/DLHLP_RNNLM_256GRU2_0/best_ppx.pth'
+  lm_config: 'config/dlhlp_lm.yaml'
+  lm_weight: 0.7
+  ctc_weight: 0

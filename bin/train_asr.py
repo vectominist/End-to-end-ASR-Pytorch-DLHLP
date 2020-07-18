@@ -186,8 +186,8 @@ class Solver(BaseSolver):
                         self.write_log(   'cer',{'tr_ctc':cal_er(self.tokenizer,ctc_output,txt,mode='cer',ctc=True)})
                         self.write_log('ctc_text_train',self.tokenizer.decode(ctc_output[0].argmax(dim=-1).tolist(),
                                                                                                 ignore_repeat=True))
-                    if self.step==1 or self.step % (self.PROGRESS_STEP * 5) == 0:
-                        self.write_log('spec_train',feat_to_fig(feat[0].transpose(0,1).cpu().detach(), spec=True))
+                    # if self.step==1 or self.step % (self.PROGRESS_STEP * 5) == 0:
+                    #     self.write_log('spec_train',feat_to_fig(feat[0].transpose(0,1).cpu().detach(), spec=True))
                     del total_loss
                     
                     if self.emb_fuse: 

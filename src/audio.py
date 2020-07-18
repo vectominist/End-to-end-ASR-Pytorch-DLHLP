@@ -9,7 +9,7 @@ from librosa import feature
 import numpy as np
 
 GRIFFIN_LIM_ITER = 50
-SAMPLE_RATE = 8000
+SAMPLE_RATE = 16000
 
 class CMVN(torch.jit.ScriptModule):
 

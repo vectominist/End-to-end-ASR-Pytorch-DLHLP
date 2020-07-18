@@ -21,7 +21,7 @@ class Solver(BaseSolver):
         # assert self.config['data']['corpus']['name'] == self.src_config['data']['corpus']['name']
         # self.config['data']['corpus']['path'] = self.src_config['data']['corpus']['path']
         self.config['data']['corpus']['bucketing'] = False
-        self.config['data']['corpus']['threshold'] = 100
+        # self.config['data']['corpus']['threshold'] = 100
 
         # The follow attribute should be identical to training config
         self.config['data']['audio'] = self.src_config['data']['audio']
@@ -47,12 +47,7 @@ class Solver(BaseSolver):
         feat_len = feat_len.to(self.device)
         txt = txt.to(self.device)
         txt_len = torch.sum(txt!=0,dim=-1)
-        # print(feat.mean())
 
-        # print(feat)
-        # print(feat.shape)
-        # input()
-        
         return feat, feat_len, txt, txt_len
 
     def load_data(self):
