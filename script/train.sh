@@ -3,7 +3,7 @@
 # $1 : experiment name
 # $2 : cuda id
 
-CONFIG="librispeech_asr"
+CONFIG="dlhlp_asr"
 
 DIR="/data/storage/harry/E2E_ASR"
 

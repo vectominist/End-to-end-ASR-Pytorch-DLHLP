@@ -1,8 +1,8 @@
 data:
   corpus:                                 # Pass to dataloader
     # The following depends on corpus
-    name: 'DLHLP'                   # Specify corpus
-    path: '/data/storage/harry/dlhlp2020/DLHLP'
+    name: 'DLHLP'                         # Specify corpus
+    path: '/data/storage/harry/test_env/DLHLP'
     train_split: ['train']
     dev_split: ['dev']
     bucketing: True
@@ -22,7 +22,7 @@ hparas:                                   # Experiment hyper-parameters
 model:                                     # Model architecture
   emb_tying: False                         # https://arxiv.org/pdf/1608.05859.pdf
   emb_dim: 512
-  module: 'GRU'                           # 'LSTM'/'GRU'
+  module: 'GRU'                            # 'LSTM'/'GRU'
   dim: 512
   n_layers: 2
   dropout: 0.5

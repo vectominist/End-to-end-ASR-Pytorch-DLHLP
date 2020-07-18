@@ -19,13 +19,13 @@ def read_text(file):
     src_file = file.rsplit('/', 1)[0]+'/bopomo.trans.txt'
     idx = file.split('/')[-1].split('.')[0]
 
-    with open(src_file,'r') as fp:
+    with open(src_file,'r',encoding='UTF-8') as fp:
         for line in fp:
             if idx == line.split(' ')[0]:
                 return line[:-1].split(' ',1)[1]
 
 class DLHLPDataset(Dataset):
-    def __init__(self, path, split, tokenizer, bucket_size=1, ascending=False):
+    def __init__(self, path, split, tokenizer, bucket_size=1, ascending=False, read_audio=False):
         # Setup
         self.path = path
         self.bucket_size = bucket_size

@@ -32,7 +32,7 @@ def collect_audio_batch(batch, audio_transform, mode):
                 feat = audio_transform(str(b[0]))
             else:
                 file.append('dummy')
-                feat = audio_transform(b[0])
+                feat = audio_transform(str(b[0]))
             audio_feat.append(feat)
             audio_len.append(len(feat))
             text.append(torch.LongTensor(b[1]))

@@ -1,15 +1,13 @@
 data:
   corpus:                                 # Pass to dataloader
     # The following depends on corpus
-    name: 'DLHLP'                   # Specify corpus
-    path: '/data/storage/harry/dlhlp2020/DLHLP'
+    name: 'DLHLP'                         # Specify corpus
+    path: '/data/storage/harry/test_env/DLHLP'
     train_split: ['train']
     dev_split: ['dev']
     bucketing: True
     batch_size: 32
-    ratio: -1                             # Sampling ratio of different training sets
-    threshold: 100.0                      # Threshold of length of audio(sec)
-
+    
   audio:                                  # Pass to audio transform
     feat_type: 'fbank'
     feat_dim:  80
@@ -44,12 +42,13 @@ model:                                     # Model architecture
   encoder:
     vgg: 1                                 # 4x reduction on time feature extraction
     vgg_freq: 1
+    vgg_low_filt: -1
     module: 'LSTM'                         # 'LSTM'/'GRU'/'Transformer'
     bidirection: True
     dim: [512,512]
     dropout: [0.2,0.2]
     layer_norm: [False,False]
-    proj: [True,True]            # Linear projection + Tanh after each rnn layer
+    proj: [True,True]                      # Linear projection + Tanh after each rnn layer
     sample_rate: [1,1]
     sample_style: 'drop'                   # 'drop'/'concat'
   attention:

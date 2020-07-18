@@ -3,7 +3,6 @@ import time
 import torch
 import numpy as np
 from torch import nn
-import editdistance as ed
 
 import matplotlib
 matplotlib.use('Agg')
@@ -103,6 +102,7 @@ def human_format(num):
     return '{:3.1f}{}'.format(num, [' ', 'K', 'M', 'G', 'T', 'P'][magnitude])
 
 def cal_er(tokenizer, pred, truth, mode='wer', ctc=False):
+    import editdistance as ed
     # Calculate error rate of a batch
     if pred is None:
         return np.nan
