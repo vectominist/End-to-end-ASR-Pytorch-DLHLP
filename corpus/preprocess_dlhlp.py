@@ -45,14 +45,13 @@ class DLHLPDataset(Dataset):
         # Sort dataset by text length
         # file_len = Parallel(n_jobs=READ_FILE_THREADS)(delayed(getsize)(f) for f in file_list) 
         file_len = Parallel(n_jobs=READ_FILE_THREADS)(delayed(getsize)(f) for f in file_list)
-        if split[0] == 'test':
-            # print('[INFO] test !!')
-            file_names = [int(str(f).split('/')[-1][:-4]) for f in file_list]
-            self.file_list, self.text = zip(*[(f_name,txt) \
-                for f_num,f_name,txt in sorted(zip(file_names,file_list,text), reverse=ascending, key=lambda x:x[0])])
-        else:
-            self.file_list, self.text = zip(*[(f_name,txt) \
-                for time_len,f_name,txt in sorted(zip(file_len,file_list,text), reverse=not ascending, key=lambda x:x[0])])
+        # if split[0] == 'test':
+        #     file_names = [int(str(f).split('/')[-1][:-4]) for f in file_list]
+        #     self.file_list, self.text = zip(*[(f_name,txt) \
+        #         for f_num,f_name,txt in sorted(zip(file_names,file_list,text), reverse=ascending, key=lambda x:x[0])])
+        # else:
+        self.file_list, self.text = zip(*[(f_name,txt) \
+            for time_len,f_name,txt in sorted(zip(file_len,file_list,text), reverse=not ascending, key=lambda x:x[0])])
         
         print('[INFO] DLHLP dataset', split[-1], 'set :',len(self.file_list),'audio files found')
 

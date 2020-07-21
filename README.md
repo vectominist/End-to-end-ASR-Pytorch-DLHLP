@@ -27,19 +27,19 @@ This baseline is composed of a character-based joint CTC-attention ASR model and
 | Greedy   | 25.4       | 25.9        |
 
 ## DLHLP Baseline
-This baseline is composed of a character-based joint CTC-attention ASR model and an RNNLM which were trained on the DLHLP training set.
+This baseline is composed of a character-based joint CTC-attention ASR model and an RNN-LM which were trained on the DLHLP training set.
 
-| Decoding               | DEV WER(%) | TEST LevDistance |
-| ---------------------- | ---------- | ---------------- |
-| Greedy                 | 5.86       | 0.896            |
-| SpecAugment + Beam=5   | 2.88       | 0.508            |
+| Decoding               | DEV CER/WER(%) | TEST CER/WER(%) |
+| ---------------------- | -------------- | --------------- |
+| SpecAugment + Greedy   | 1.0 / 3.4      | 0.8 / 3.1       |
+| SpecAugment + Beam=5   | 0.8 / 2.9      | 0.7 / 2.6       |
 
 ## TODO
 1. CTC beam decoding (testing)
 2. SpecAugment (will be released)
 3. Multiple corpora training (will be released)
 4. Support of WSJ and Switchboard dataset (under construction)
-5. Combination of CTC and RNNLM: RNN transducer (under construction)
+5. Combination of CTC and RNN-LM: RNN transducer (under construction)
 
 ## Citation
 
