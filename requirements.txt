@@ -4,7 +4,7 @@ future
 joblib
 pyyaml
 sentencepiece
-editdistance
+editdistance 
 tb-nightly
 torch>=1.2.0
 torchaudio
