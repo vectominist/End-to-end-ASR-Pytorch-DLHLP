@@ -189,7 +189,7 @@ class BaseSolver():
         torch.save(full_dict, ckpt_path)
         if len(name) > 0:
             name = ' on ' + name
-        ckpt_path = '/'.join(ckpt_path.split('/')[6:]) # Set how long the path name to be shown.
+        ckpt_path = '/'.join(ckpt_path.split('/')[-2:]) # Set how long the path name to be shown.
         self.verbose("Saved ckpt (step = {}, {} = {:.2f}) @ {}{}".\
                                        format(human_format(self.step),metric,score,ckpt_path,name))
 
