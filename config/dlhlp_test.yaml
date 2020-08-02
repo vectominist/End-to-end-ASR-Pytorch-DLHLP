@@ -2,8 +2,7 @@ data:
   corpus:                                 # Pass to dataloader
     # The following depends on corpus
     name: 'DLHLP'                         # Specify corpus
-    path: '/data/storage/harry/test_env/DLHLP' #'pth/to/librispeech'
-    # path: '/workspace/data/wTIMIT'         #'pth/to/librispeech'
+    path: '/data/storage/harry/test_env/DLHLP'
     dev_split: ['dev']
     test_split: ['test']
     bucketing: False
@@ -13,7 +12,7 @@ src:
   ckpt: '/data/storage/harry/test_env/dlhlp_ckpt/hw1_best_att_dev.pth'
 
 decode:
-  beam_size: 5
+  beam_size: 1
   min_len_ratio: 0.01
   max_len_ratio: 0.30
   lm_path: '/data/storage/harry/test_env/dlhlp_ckpt/hw1_best_ppx.pth'
