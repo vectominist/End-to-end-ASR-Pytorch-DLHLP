@@ -15,5 +15,4 @@ CUDA_VISIBLE_DEVICES=$2 python3 main.py --config config/${CONFIG}.yaml \
     --logdir ${DIR}/log/ \
     --ckpdir ${DIR}/ckpt/ \
     --outdir ${DIR}/result/ \
-    --reserve_gpu 0 \
     # --load ${DIR}/ckpt/$1/best_ctc_LibriSpeech.pth \
