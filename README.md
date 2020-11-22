@@ -60,12 +60,11 @@ This baseline is composed of a character-based joint CTC-attention ASR model and
     organization={IEEE}
 }
 
-@misc{chang2020endtoend,
-    title={End-to-end Whispered Speech Recognition with Frequency-weighted Approaches and Layer-wise Transfer Learning},
+@inproceedings{chang2020endtoend,
+    title={End-to-end Whispered Speech Recognition with Frequency-weighted Approaches and Pseudo Whisper Pre-training},
     author={Heng-Jui Chang and Alexander H. Liu and Hung-yi Lee and Lin-shan Lee},
-    year={2020},
-    eprint={2005.01972},
-    archivePrefix={arXiv},
-    primaryClass={cs.CL}
+    booktitle={Spoken Language Technology Workshop (SLT)},
+    year={2021},
+    organization={IEEE}
 }
 ```
